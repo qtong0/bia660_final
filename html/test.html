@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript" src="./inc/jquery-1.3.2.js" ></script>
+  </head>
+  <body>
+   <div id="map-canvas" style="background-color:white">
+    <img id=imgmap1 src="" alt="" style="width:100;height:100"/>
+    </div>
+    <script type="text/javascript">
+        var G_VAR_bia660 = {}
+        G_VAR_bia660.center = "40.745844,-74.032236";
+        function createMarker() {
+            var chars = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];                
+            var l = [ G_VAR_bia660.center, //center
+                      encodeURIComponent("529 Washington St,Hoboken, NJ 07030"),
+                      encodeURIComponent("200 Monroe St,Hoboken, NJ 07030"),
+                      encodeURIComponent("506 Washington St,Hoboken, NJ 07030")];
+            var result = "";
+            for(i=0;i<l.length;++i){
+                if(0==i) 
+                    result += ("&markers=color:blue|label:" + chars[i] + "|"+ l[i]);
+                else
+                    result += ("&markers=label:" + chars[i] + "|"+ l[i]);
+            }           
+            return result;
+        }
+        $('document').ready(function(){
+           var src = "http://maps.googleapis.com/maps/api/staticmap?" +
+                 "center="+G_VAR_bia660.center+
+                 "&markers=color:green%7Clabel:A" +
+                 "&zoom=15&size=600x600&maptype=roadmap" +
+                 createMarker() + 
+                 //"&markers=color:green%7Clabel:G%7C40.711614,-74.012318" + 
+                 //"&markers=color:red%7Ccolor:red%7Clabel:C%7C40.718217,-73.998284" +
+                 "&sensor=false";
+            $('#imgmap1').attr("src", src);
+        });
+    </script>
+ 
+  </body>
+  
+</html>
