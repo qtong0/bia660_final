@@ -23,7 +23,7 @@ for off in range(1,retrive_max,20):
     loc = "--location="+"hoboken"
     writeto = "--writeto=output/"+"nj"+"_1"
     offset = "--offset="+str(off)
-    cmd = "./main.py" + \
+    cmd = "./retrieve.py" + \
           " " + loc +             \
           " " + search_what +     \
           " " + max_row +         \
@@ -31,7 +31,7 @@ for off in range(1,retrive_max,20):
           " " + str(off)
     print cmd
     #result = run(cmd)
-    p = subprocess.Popen(["./main.py",offset,loc,search_what,max_row,writeto], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["./retrieve.py",offset,loc,search_what,max_row,writeto], stdout=subprocess.PIPE)
     p.wait()
     time.sleep(5)
 
