@@ -1,6 +1,6 @@
 delimiter $$
 
-CREATE TABLE `resterant` (
+CREATE TABLE `restaurant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `rating` float DEFAULT NULL,
@@ -14,11 +14,11 @@ delimiter $$
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_resterant` int(11) NOT NULL,
+  `id_restaurant` int(11) NOT NULL,
   `comment` text,
   PRIMARY KEY (`id`),
-  KEY `fk_comments_1_idx` (`id_resterant`),
-  CONSTRAINT `fk_comments_1` FOREIGN KEY (`id_resterant`) REFERENCES `resterant` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_comments_1_idx` (`id_restaurant`),
+  CONSTRAINT `fk_comments_1` FOREIGN KEY (`id_restaurant`) REFERENCES `restaurant` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=478 DEFAULT CHARSET=latin1$$
 
 

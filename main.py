@@ -7,7 +7,7 @@ import urllib
 import urllib2
 import sys
 import time
-import resterant_db
+import restaurant_db
 
 parser = optparse.OptionParser()
 """
@@ -204,14 +204,14 @@ def print_one_busi(busi):
     outstr += ","+loc
     outstr += "\n"
     outfile.write(outstr.encode('utf-8'))
-    rid = resterant_db.addNewResterant(xget(busi,"name"),
+    rid = restaurant_db.addNewResterant(xget(busi,"name"),
                          xget(busi,"rating"), \
                          xget(busi,"review_count"), \
                          xget(busi,"phone"), \
                          loc)
     comments  = getComments(busi["id"])
     for c in comments:
-        resterant_db.addNewComment(rid,c)
+        restaurant_db.addNewComment(rid,c)
     outfile.write("\n".join(comments).encode('utf-8'))
     outfile.close()
 
