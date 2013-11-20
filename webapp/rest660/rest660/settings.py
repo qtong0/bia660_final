@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'restinfo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,6 +57,13 @@ WSGI_APPLICATION = 'rest660.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
+    'mysql': { # make this 'default' and the other one something else to use MySQL
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rest660', # database name
+        'USER': 'root',
+        #'PASSWORD': '',
+        #'HOST': '',
+    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),

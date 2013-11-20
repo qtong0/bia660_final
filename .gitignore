@@ -1,2 +1,4 @@
 
 *.pyc
+
+webapp/rest660/db.sqlite3
