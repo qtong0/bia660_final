@@ -1,0 +1,5 @@
+# mysql -u root -p
+
+mysql> create database biafinal_db;
+
+# mysql -u root -p biafinal_db < biafinal_db_merged.sql
