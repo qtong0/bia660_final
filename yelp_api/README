@@ -1,0 +1,2 @@
+execute:
+python get_all.py to crawl data
