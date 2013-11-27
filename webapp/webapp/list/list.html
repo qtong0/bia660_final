@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+	<title>List of results</title> 
+	<style>
+		.mytable td, th {
+			/*width: 9rem;*/
+			padding-left: 5px;
+			padding-right: 5px;
+			height: 2rem;
+			border: 1px solid #ccc;
+			text-align: center;
+		}
+		.mytable td {
+			text-align: left;
+		}
+
+		.mytable .tbl_name {
+			width: 150px;
+		}
+
+		.mytable .tbl_last {
+			text-align: center;
+		}
+
+		.mytable th {
+			background: lightblue;
+			border-color: white;
+			border: 1px solid #ccc;
+		}
+		.mytable {
+			padding: 1rem;
+			margin-top: 20px;
+			border-collapse:collapse;
+		}
+	</style>
+
+</head> 
+<body>
+	<form method = "post">
+	<input type = "text" name = "search_cont" placeholder = "input what you want to search" size = 60></input>
+		<!-- <select name = "opt_num">
+			<option value = "5">5</option>
+			<option value = "10">10</option>
+		</select>-->
+		<input type = "submit" value = "subbmit"></input>
+	</form>
+	<div style = {{links_display}}>
+		Order by: <a href = "/list?order=rating&s_cont={{search_cont}}">rating</a>
+	</div>
+	<br>
+	<table class = 'mytable'>
+		<tr>
+			<th>Name</td>
+			<th>Address</td>
+			<th>Telephone</td>
+			<th>Rating</th>
+		</tr>
+		{% for item in arr_mytable %}
+		<tr>
+			<td class = "tbl_name">{{item.name}}</td>
+			<td class = "tbl_address">{{item.address}}</td>
+			<td>{{item.telephone}}</td>
+			<td class = "tbl_last">{{item.rating}}</td>
+		</tr>
+		{% endfor%}
+	</table>
+</body>
+</html>
