@@ -251,7 +251,7 @@
 	<div class = 'all_content'>
 		<header>
 
-			<div id = 'hearder_left'><img src="./image/bia_logo.png" height = '50px'></div>
+			<a href = './'><div id = 'hearder_left'><img src="./image/bia_logo.png" height = '50px'></div></a>
 			<form method = "post" action = "./results">
 				<input type="text" name="search_input" id="search-input" class="searchfield" placeholder="Search" />
 				<input type="submit" name="search_btn" id="search-btn" value="" />
@@ -261,12 +261,14 @@
 			<h1>Results for <i id = 'search_input_text'>"{{search_input}}"</i></h1>
 			<form class = 'orderby_form' onchange = 'myOrderBySubmit()' id='orderby_form'>
 				Order by: 
-				<select class = 'styled-select' name = 'orderby_select'>
-					<option value = 'default'>Default</option>
-					<option value = 'rating'>Rating</option>
-					<option value = 'location'>Location</option>
+				<select class = 'styled-select' name = 'orderby_select' id = 'orderby_select'>
+					<option value = 'default' {{default_selected}}>Default</option>
+					<option value = 'rating' {{rating_selected}}>Rating</option>
+					<option value = 'location' {{location_selected}}>Location</option>
 				<select>
 				<input style = 'display:none' name = 'search_input' value = '{{search_input}}'>
+				<input style = 'display:none' name = 'lat' value = 'none' id = 'input_lat'>
+				<input style = 'display:none' name = 'lng' value = 'none' id = 'input_lng'>
 			</form>
 			<br>
 			<ul>
@@ -309,8 +311,39 @@
 
 	function myOrderBySubmit()
 	{
+		e = document.getElementById('orderby_select')
+		if(e.options[e.selectedIndex].value == 'location')
+		{
+			navigator.geolocation.getCurrentPosition(writePosition, geoError, geoOptions);
+			return;
+		}
 		document.getElementById('orderby_form').submit();
 	}
+
+	function geoError()
+	{
+		alert('location not enabled in browser!');
+	}
+
+	function writePosition(position)
+	{
+		document.getElementById('input_lat').value = position.coords.latitude;
+		document.getElementById('input_lng').value = position.coords.longitude;
+		if(document.getElementById('input_lat').value == 'none' || document.getElementById('input_lng').value == 'none')
+		{
+			alert('please enable location in browser');
+		}
+		else
+		{
+			document.getElementById('orderby_form').submit();
+		}
+	}
+
+	var geoOptions = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	};
 
 	  var geocoder;
 	  var map;
@@ -350,20 +383,47 @@
 			  } else {
 			  }
 			});
+
+			redIcon_image = "./image/map_red_icon.png";
+			blueIcon_image = "./image/map_blue_icon.png";
+			greenIcon_image = "./image/map_green_icon.png";
+
 			for (var i = 0; i < arr_latlng.length; i++)
 			{
 				if(i >= marker_num)
 				{
 					break;
 				}
-			  tmp_arr = arr_latlng[i].split(' ');
-			  var myLatlng = new google.maps.LatLng(tmp_arr[0], tmp_arr[1]);
-			  var marker = new google.maps.Marker({
-			      position: myLatlng,
-			      map: map,
-			      title: tmpArray[i]
-			  });
-			  arrMarkers.push(marker);
+				tmp_arr = arr_latlng[i].split(' ');
+				var myLatlng = new google.maps.LatLng(tmp_arr[0], tmp_arr[1]);
+				if(i < 5)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: redIcon_image
+					});
+				}
+				else if (i < 10)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: greenIcon_image
+					});
+				}
+				else if (i < 20)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: blueIcon_image
+					});
+				}
+				arrMarkers.push(marker);
 			}
 		}
 	  }
