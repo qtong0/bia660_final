@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Results for {{search_input}}</title>
+	<style>
+		
+		body {
+			background: url('./image/index_background_light.png');
+			text-align: center;
+
+		}
+
+		.all_content {
+			overflow:auto;
+			width: 900px;
+			min-height: 800px;
+			margin: 0 auto;
+			margin-top: 10px;
+			text-align: left;
+			background-color: #fff;
+			border-radius: 8px;
+
+			-webkit-box-shadow: 4px 2px  #BBB,  -4px 0 2px #BBB;   
+			-moz-box-shadow: 4px 0 2px #BBB,  -4px 0 2px #BBB;   
+			box-shadow: 4px 0 2px #BBB,  -4px 0 2px #BBB;
+		}
+
+		#hearder_left {
+			font-family: Corbel,'Myriad Pro',Arial, Helvetica, sans-serif;
+			font-size: 15px;
+			text-align: left;
+			margin: 8px;
+
+			padding: 20px 20px 20px 20px;
+			margin-bottom: 0px;
+
+			left: 0;
+			width: 50%;
+			float: left;
+		}
+
+		form {
+			padding: 20px 20px 20px 20px;
+			margin: 16px;
+
+			float: right;
+		    display: block;
+
+			position: relative;
+			width: 200px;
+			/*margin: 20px;
+			padding: 50px;
+		    border-radius: 15px;*/
+		    margin-right: 20px;
+		    opacity: 1;
+		}
+
+		input {
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;}
+
+		.searchfield  {
+			width: 200px;
+			padding: 2px;
+			padding-right: 45px;
+			font-size: 13px;
+			border: 1px solid #999;
+			border-bottom-color: #cecece;
+			border-radius: 5px;
+			box-shadow: inset 0 1px 2px rgba(0,0,0, .5), 0 0 0 5px #ededed;
+			-webkit-transition: all .25s linear;
+			transition: all .25s linear;
+
+			background: white;
+		}
+
+		/*.searchfield:focus  {
+		  width: 650px;
+		  color: #666;
+		  box-shadow: inset 0 1px 2px rgba(0,0,0, .2), 0 0 0 6px #e0e0e0;}*/
+
+		#search-btn {
+			background: transparent url('./image/mag_glass_small.png') no-repeat;
+			position: absolute;
+			height: 14px;
+			width: 14px;
+			top: 26px;
+			right: 26px;
+			border: 0;
+			cursor: pointer;
+			zoom: 1;
+			filter: alpha(opacity=45);
+			opacity: .45;
+			-webkit-transition: all .25s linear;
+			transition: all .25s linear;
+		}
+
+		header {
+			display: table-cell;
+			width: 900px;
+			border-bottom: 1px solid #ccc;
+			background-color: #9EC5DF;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+
+		.all_results {
+			font-family: 'Lato', Helvetica, Arial, sans-serif;
+			font-size: 15px;
+			width: 60%;
+			display: block;
+			float: left;
+			border-right: 1px dotted #222;
+			margin-top: 20px;
+
+		}
+
+		.all_right {
+			width: 39%;
+			display: block;
+			float: right;
+			margin-top: 20px;
+		}
+
+		.all_results h1{
+			font-family: Corbel,'Myriad Pro',Arial, Helvetica, sans-serif;
+			font-size: 25px;
+			text-align: left;
+			width: 300px;
+
+			padding: 0px 0px 0px 35px;
+		}
+
+		.all_results h3 {
+			margin: 0px;
+		}
+
+		.all_results ul {
+			list-style-type: none;
+			border-top: 1px dotted #ccc;
+		}
+
+		.all_results ul li {
+			overflow: auto;
+			padding: 8px 15px;
+			margin: 5px 20px 5px -10px;
+		}
+
+		.all_results li {
+		}
+
+		.all_results li:hover {
+			color: #444;
+		}
+
+		.all_results ul li:nth-child(odd) {
+			background: rgba(133,133,133,0.1);
+		}
+
+		.all_results ul li:nth-child(odd):hover {
+			background: rgba(133,133,133,0.5);
+		}
+
+		.all_results ul li:nth-child(even) {
+			background: rgba(133,133,133,0.3);
+		}
+
+		.all_results ul li:nth-child(even):hover {
+			background: rgba(133,133,133,0.5);
+		}
+
+		.all_results .title_left {
+			display: block;
+			width: 50%;
+			float: left;
+			font-size: 14px;
+			padding-bottom: 5px;
+		}
+
+		.all_results .rating_right {
+			display: block;
+			width: 50%;
+			float: right;
+			text-align: right;
+			font-size: 12px;
+		}
+
+		.all_results .address_left {
+			width: 320px;
+			text-align: left;
+			float: left;
+			font-size: 12px;
+		}
+
+		.all_results .telephone_right {
+			width: 130px;
+			float: right;
+			text-align: right;
+			font-size: 12px;
+		}
+
+		.all_results a:link {
+			text-decoration: none;
+			color: black;
+		}
+
+		.all_results a:visited {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.all_results a:hover {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.all_results a:active {
+			text-decoration: underline;
+			color: inherit;
+		}
+
+		#map_marker_num {
+			text-align: center;
+			padding: 10px 0px 10px 0px;
+			margin-right: 10px;
+			border-bottom: 1px dotted #222;
+		}
+
+		.styled-select {
+			width: 77px;
+			height: 20px;
+			border: 1px solid #ccc;
+		}
+
+		.orderby_form {
+			right: 0;
+			padding: 0px;
+			margin: 0px 0px 10px 0px;
+
+		}
+
+		.all_results .title_left:hover {
+			text-decoration: underline;
+		}
+
+	</style>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" 
+	        type="text/javascript"></script>
+</head>
+<body>
+	<div class = 'all_content'>
+		<header>
+
+			<a href = './'><div id = 'hearder_left'><img src="./image/bia_logo.png" height = '50px'></div></a>
+			<form method = "post" action = "./results">
+				<input type="text" name="search_input" id="search-input" class="searchfield" placeholder="Search" />
+				<input type="submit" name="search_btn" id="search-btn" value="" />
+			</form>
+		</header>
+		<section class = 'all_results'>
+			<h1>Results for <i id = 'search_input_text'>"{{search_input}}"</i></h1>
+			<form class = 'orderby_form' onchange = 'myOrderBySubmit()' id='orderby_form'>
+				Order by: 
+				<select class = 'styled-select' name = 'orderby_select' id = 'orderby_select'>
+					<option value = 'default' {{default_selected}}>Default</option>
+					<option value = 'rating' {{rating_selected}}>Rating</option>
+					<option value = 'location' {{location_selected}}>Location</option>
+				<select>
+				<input style = 'display:none' name = 'search_input' value = '{{search_input}}'>
+				<input style = 'display:none' name = 'lat' value = 'none' id = 'input_lat'>
+				<input style = 'display:none' name = 'lng' value = 'none' id = 'input_lng'>
+			</form>
+			<br>
+			<ul>
+				{% for item in arr_mytable %}
+				<li>
+					<a href = './rest_info?rest_address={{item.address}}&search_input={{search_input}}' method = 'post'>
+						<div class = 'title_left'><h3>{{item.name}}</h3>
+						</div>
+						<div class = 'rating_right'>Rating: {{item.rating}}/5</div>
+						<span class = 'address_left'>
+							{{item.address}}
+						</span>
+						<span class = 'telephone_right'>
+							<i>{{item.telephone}}</i>
+						</span>
+					</a>
+				</li>
+				{% endfor%}
+			</ul>
+		</section>
+		<div class = 'all_right'>
+			<div id="map-canvas" style="width: 340px; height: 400px;"></div>
+			<div id = 'map_marker_num'>
+				Show first 
+				<select onchange='myChangeMarkerNum()' id = 'select_marker_num'>
+					<option value = '5'>5</option>
+					<option value = '10'>10</option>
+					<option value = '15'>15</option>
+					<option value = '20'>20</option>
+				</select>
+				results.
+			</div>
+		</div>
+		
+		<div id="default_address" style = "display:none;">266 7th Street, Hoboken, NJ</div>
+		<div id = "myList" style = "display:none;">{{testVal}}</div>
+		<div id = "list_latlng" style = "display:none;">{{str_latlng}}</div>
+	</div>
+	<script type="text/javascript">
+
+	function myOrderBySubmit()
+	{
+		e = document.getElementById('orderby_select')
+		if(e.options[e.selectedIndex].value == 'location')
+		{
+			navigator.geolocation.getCurrentPosition(writePosition, geoError, geoOptions);
+			return;
+		}
+		document.getElementById('orderby_form').submit();
+	}
+
+	function geoError()
+	{
+		alert('location not enabled in browser!');
+	}
+
+	function writePosition(position)
+	{
+		document.getElementById('input_lat').value = position.coords.latitude;
+		document.getElementById('input_lng').value = position.coords.longitude;
+		if(document.getElementById('input_lat').value == 'none' || document.getElementById('input_lng').value == 'none')
+		{
+			alert('please enable location in browser');
+		}
+		else
+		{
+			document.getElementById('orderby_form').submit();
+		}
+	}
+
+	var geoOptions = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	};
+
+	  var geocoder;
+	  var map;
+	  var arrMarkers = new Array();
+	  function initialize() {
+	    geocoder = new google.maps.Geocoder();
+	    var latlng = new google.maps.LatLng(-34.397, 150.644);
+	    var mapOptions = {
+	      zoom: 14,
+	      center: latlng
+	    }
+	    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	    codeAddress(5);
+	  }
+
+	  function codeAddress(marker_num) {
+		str_restnames = document.getElementById('myList').innerHTML;
+		var tmpArray = document.getElementById('myList').innerHTML.split('#');
+		var address = document.getElementById('default_address').innerHTML;
+
+		var arr_latlng = document.getElementById('list_latlng').innerHTML.split('#');
+
+		if (str_restnames == "")
+		{
+		  geocoder.geocode( { 'address': address}, function(results, status) {
+		  if (status == google.maps.GeocoderStatus.OK) {
+		      map.setCenter(results[0].geometry.location);
+		      } else {
+		      }
+		  });
+		}
+		else
+		{
+			geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+			  map.setCenter(results[0].geometry.location);
+			  } else {
+			  }
+			});
+
+			redIcon_image = "./image/map_red_icon.png";
+			blueIcon_image = "./image/map_blue_icon.png";
+			greenIcon_image = "./image/map_green_icon.png";
+
+			for (var i = 0; i < arr_latlng.length; i++)
+			{
+				if(i >= marker_num)
+				{
+					break;
+				}
+				tmp_arr = arr_latlng[i].split(' ');
+				var myLatlng = new google.maps.LatLng(tmp_arr[0], tmp_arr[1]);
+				if(i < 5)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: redIcon_image
+					});
+				}
+				else if (i < 10)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: greenIcon_image
+					});
+				}
+				else if (i < 20)
+				{
+					var marker = new google.maps.Marker({
+						position: myLatlng,
+						map: map,
+						title: tmpArray[i],
+						icon: blueIcon_image
+					});
+				}
+				arrMarkers.push(marker);
+			}
+		}
+	  }
+
+	  google.maps.event.addDomListener(window, 'load', initialize);
+
+		function myChangeMarkerNum()
+		{
+			var e = document.getElementById('select_marker_num');
+			for (var i = 0; i < arrMarkers.length; i++)
+			{
+				arrMarkers[i].setMap(null);
+			}
+			arrMarkers.length = 0;
+			codeAddress(e.options[e.selectedIndex].text);
+		}
+	</script>
+</body>
+</html>
