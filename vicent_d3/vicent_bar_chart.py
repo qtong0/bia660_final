@@ -104,4 +104,4 @@ def ratioBar(cate,getwhat):
 if __name__ == "__main__":
     #ratioBar("Burgers","ratio");
     #ratioBar("Burgers","review");
-    ratioBar("Burgers","price");
+    ratioBar("Pizza","price");

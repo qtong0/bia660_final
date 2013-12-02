@@ -9,8 +9,8 @@ word_to_replace["and"]="&"
 
 db_host = '127.0.0.1'
 db_name = 'biafinal_db'
-db_user = "root"
-db_password = "123456"
+db_user = "bia_user"
+db_password = 'biabiabia'
 
 def addNewResterant(id_yelp,id_allmenu):
     conn = pymysql.connect(host=db_host, port=3306, user=db_user, passwd=db_password, db=db_name)
