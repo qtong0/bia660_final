@@ -17,6 +17,8 @@ dbname = 'biafinal_db'
 l_host = '127.0.0.1'
 l_port = 3306
 
+vega_width = 500
+vega_height = 300
 
 def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,w_yelp_review):
     conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
@@ -74,7 +76,7 @@ def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,
 
     df = pd.DataFrame(ratios, index=titles)
 
-    vis = Visualization(width=500, height=300)
+    vis = Visualization(width=vega_width, height=vega_height)
     vis.scales['x'] = Scale(name='x', type='ordinal', range='width',
                             domain=DataRef(data='table', field="data.idx"))
     vis.scales['y'] = Scale(name='y', range='height', nice=True,

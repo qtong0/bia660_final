@@ -7,6 +7,8 @@ dbname = 'biafinal_db'
 l_host = '127.0.0.1'
 l_port = 3306
 
+vega_width = 500
+vega_height = 300
 def wcloud():
     conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
     cur = conn.cursor()
@@ -24,8 +26,8 @@ def wcloud():
 
     data = {}
     data[ "name"]= "wordcloud"
-    data[ "width"]=  400
-    data[ "height"]= 400
+    data[ "width"]=  vega_width
+    data[ "height"]= vega_height
     data["padding"] =  {"top":0, "bottom":0, "left":0, "right":0}
     data["data"] = []
     

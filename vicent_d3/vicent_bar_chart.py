@@ -16,6 +16,8 @@ dbpsw = 'biabiabia'
 dbname = 'biafinal_db'
 l_host = '127.0.0.1'
 l_port = 3306
+vega_width = 500
+vega_height = 300
 
 def ratioBar(cate,getwhat):
     if getwhat not in ["ratio","review","price"]:
@@ -71,7 +73,7 @@ def ratioBar(cate,getwhat):
 
     df = pd.DataFrame(ratios, index=titles)
 
-    vis = Visualization(width=500, height=300)
+    vis = Visualization(width=vega_width, height=vega_height)
     vis.scales['x'] = Scale(name='x', type='ordinal', range='width',
                             domain=DataRef(data='table', field="data.idx"))
     vis.scales['y'] = Scale(name='y', range='height', nice=True,
@@ -97,11 +99,11 @@ def ratioBar(cate,getwhat):
     #Using a Vincent KeyedList here
     vis.data['table'] = data
     vis.axis_titles(x='restaurant', y=getwhat)
-    vis.to_json('vega_bc.json')
+    vis.to_json('vega_bc_{0}.json'.format(getwhat))
     print names
     return names
 
 if __name__ == "__main__":
     #ratioBar("Burgers","ratio");
-    #ratioBar("Burgers","review");
-    ratioBar("Burgers","price");
+    ratioBar("Burgers","review");
+    #ratioBar("Burgers","price");
