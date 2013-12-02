@@ -97,7 +97,7 @@ def ratioBar(cate,getwhat):
     #Using a Vincent KeyedList here
     vis.data['table'] = data
     vis.axis_titles(x='restaurant', y=getwhat)
-    vis.to_json('vega.json')
+    vis.to_json('vega_bc.json')
     print names
     return names
 

@@ -8,13 +8,22 @@
     <script src="http://trifacta.github.io/vega/vega.js"></script>
   </head>
   <body>
-    <div id="vis"></div>
+    <div id="vis1"></div>
+    <div id="vis2"></div>
+    <div id="vis3"></div>
+    <div id="vis4"></div>
+    <div id="vis5"></div>
+
   </body>
 <script type="text/javascript">
-// parse a spec and create a visualization view
-function parse(spec) {
-  vg.parse.spec(spec, function(chart) { chart({el:"#vis"}).update(); });
-}
-parse("./vega.json");
+    // parse a spec and create a visualization view
+    function parse(spec,divname) {
+      vg.parse.spec(spec, function(chart) { chart({el:divname}).update(); });
+    }
+    parse("./vega_bc.json","#vis1");
+    parse("./vega_bc_pro.json","#vis2");
+    parse("./vega_stack_bc.json","#vis3");
+    parse("./vega_lc.json","#vis4");
+    parse("./vega_wc.json","#vis5");
 </script>
 </html>

@@ -66,7 +66,7 @@ def wcloud():
         }
       ];
 
-    with open('./vega.json', 'w') as outfile:
+    with open('./vega_wc.json', 'w') as outfile:
         json.dump(data, outfile)
 
 if __name__ == "__main__":

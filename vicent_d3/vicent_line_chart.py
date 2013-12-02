@@ -81,7 +81,7 @@ def line(cate):
     vis.data['table'] = data
     vis.axis_titles(x='ratio', y='review')
     vis.legend(title='ratio/review')
-    vis.to_json('vega.json')
+    vis.to_json('vega_lc.json')
     print names;
     return names;
 
