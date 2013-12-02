@@ -38,7 +38,9 @@ def stackChart(cate,getwhat):
     else:
         wflag=2
     idx = 1
+    names = []
     for r1,r2 in zip(cur1,cur2):
+        names.append(r1[0])
         print r1[wflag],r2[wflag]
         values.append({"x": idx, "y": int(r1[wflag]),"c":0})
         values.append({"x": idx, "y": int(r2[wflag]),"c":1})
@@ -125,6 +127,9 @@ def stackChart(cate,getwhat):
     print stackchart
     with open('./vega.json', 'w') as outfile:
         json.dump(stackchart, outfile)
+
+    print names;
+    return names;
 
 if __name__ == "__main__":
     #stackChart("Burgers","ratio")

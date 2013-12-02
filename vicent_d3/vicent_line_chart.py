@@ -33,8 +33,10 @@ def line(cate):
 
     ratings = []
     reviews = []
+    names = []
     for r in cur:
         #print (r[2])
+        names.append(r[0])
         ratings.append(r[1])
         reviews.append(r[2])
 
@@ -80,6 +82,8 @@ def line(cate):
     vis.axis_titles(x='ratio', y='review')
     vis.legend(title='ratio/review')
     vis.to_json('vega.json')
+    print names;
+    return names;
 
 if __name__ == "__main__":
     #ratioBar("Burgers","ratio");

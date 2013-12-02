@@ -52,8 +52,10 @@ def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,
 
     ratios = []
     titles = []
+    names = []
     c = 1
     for p,a,y in zip(cur_p,cur_a,cur_y):
+        names.append(a[0])
         ratios.append({"recommend":(float(p[2])*w_price+\
                                     float(a[1])*w_allmenu_ratio+\
                                     float(a[2])*w_allmenu_review+\
@@ -99,6 +101,8 @@ def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,
     vis.data['table'] = data
     vis.axis_titles(x='restaurant', y=getwhat)
     vis.to_json('vega.json')
+    print names;
+    return names;
 
 if __name__ == "__main__":
     #ratioBar("Burgers","recommend",w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,w_yelp_review);

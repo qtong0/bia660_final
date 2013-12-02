@@ -48,14 +48,17 @@ def ratioBar(cate,getwhat):
     print(cur.description)
     #r = cur.fetchall()
 
+    names = []
     ratios = []
     titles = []
     c = 1
     for r in cur:
         #print (r[2])
         if getwhat=="price":
+            names.append(r[1])
             ratios.append({"price":r[2]})
         else:
+            names.append(r[0])
             ratios.append({"ratio":r[1],"review":r[2]})
         titles.append("T{0}".format(c))
         c += 1 
@@ -95,6 +98,8 @@ def ratioBar(cate,getwhat):
     vis.data['table'] = data
     vis.axis_titles(x='restaurant', y=getwhat)
     vis.to_json('vega.json')
+    print names
+    return names
 
 if __name__ == "__main__":
     #ratioBar("Burgers","ratio");
