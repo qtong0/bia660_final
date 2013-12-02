@@ -1,8 +1,14 @@
 import pymysql
 import json
 
+dbuser = 'bia_user'
+dbpsw = 'biabiabia'
+dbname = 'biafinal_db'
+l_host = '127.0.0.1'
+l_port = 3306
+
 def wcloud():
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='biafinal_db')
+    conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
     cur = conn.cursor()
     cmd = "SELECT category.cate_name ,count(*) "\
           "  FROM biafinal_db.dish,biafinal_db.rest_category as rc ,restaurant_info as ri,biafinal_db.category"\

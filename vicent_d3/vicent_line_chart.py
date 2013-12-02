@@ -12,14 +12,21 @@ import pandas.io.data as web
 import pandas as pd
 import pymysql
 
+dbuser = 'bia_user'
+dbpsw = 'biabiabia'
+dbname = 'biafinal_db'
+l_host = '127.0.0.1'
+l_port = 3306
+
+
 def line(cate):
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='biafinal_db')
+    conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
     cur = conn.cursor()
     cmd = "select rest_name,rating,review_count from restaurant_info where rest_id in"\
             "(" \
             "select rest_id from rest_category where cate_id in "\
             "(SELECT cate_id FROM biafinal_db.category where cate_name like '{0}%')"\
-            ")".format(cate)
+            ") order by rest_id".format(cate)
     print cmd
     cur.execute(cmd)
     print(cur.description)

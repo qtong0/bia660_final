@@ -1,8 +1,14 @@
 import pymysql
 import json
 
+dbuser = 'bia_user'
+dbpsw = 'biabiabia'
+dbname = 'biafinal_db'
+l_host = '127.0.0.1'
+l_port = 3306
+
 def stackChart(cate,getwhat):
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123456', db='biafinal_db')
+    conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
     cur1 = conn.cursor()
     cur2 = conn.cursor()
 
@@ -12,13 +18,14 @@ def stackChart(cate,getwhat):
             " and c.cate_name like '{0}%' order by ri.rest_id ".format(cate)
 
 
-    cmd_yelp =      "select aaa.name,IFNULL(aaa.rating,0),IFNULL(aaa.review_count,0) from (select id,name,rating,review_count,id_allmenu from"\
+    cmd_yelp =      "select aaa.name,IFNULL(aaa.rating,0),IFNULL(aaa.review_count,0),aaa.id from (select id,name,rating,review_count,id_allmenu from"\
           "        restaurant_yelp y, id_map where y.id = id_map.id_yelp) as aaa "\
           "  right outer join ( "\
           "         select rest_id from restaurant_info "\
           "          where rest_id in(select rest_id from rest_category where cate_id in  "\
           "              (SELECT cate_id FROM biafinal_db.category where cate_name like '{0}%')) "\
-          " order by rest_id         ) as ccc on ccc.rest_id = aaa.id_allmenu ".format(cate)
+          " order by rest_id         ) as ccc on ccc.rest_id = aaa.id_allmenu "\
+          " order by aaa.id".format(cate)
     print cmd
     print cmd_yelp
     cur1.execute(cmd)
@@ -120,6 +127,6 @@ def stackChart(cate,getwhat):
         json.dump(stackchart, outfile)
 
 if __name__ == "__main__":
-    stackChart("Burgers","ratio")
-    #stackChart("Burgers","review")
+    #stackChart("Burgers","ratio")
+    stackChart("Burgers","review")
 
