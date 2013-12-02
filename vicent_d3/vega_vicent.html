@@ -8,9 +8,11 @@
     <script src="http://trifacta.github.io/vega/vega.js"></script>
   </head>
   <body>
-    <p>Recommend</p>
+    <H1>Recommend</H1>
     <article>
-        <div  style="display: inline-block" id="vis2"></div><div  style="display: inline-block"  id="vis3"></div>
+        <div  style="display: inline-block" id="vis2"></div>
+        <div  style="display: inline-block"  id="vis31"></div> <div  style="display: inline-block"  id="vis32"></div>
+
     </article>
     <article>
         <div style="display: inline-block" id="vis11"></div>
@@ -32,7 +34,8 @@
     parse("./vega_bc_review.json","#vis12");
     parse("./vega_bc_price.json","#vis13");
     parse("./vega_bc_pro.json","#vis2");
-    parse("./vega_stack_bc.json","#vis3");
+    parse("./vega_stack_bc_ratio.json","#vis31");
+    parse("./vega_stack_bc_review.json","#vis32");
     parse("./vega_lc.json","#vis4");
     parse("./vega_wc.json","#vis5");
 </script>
