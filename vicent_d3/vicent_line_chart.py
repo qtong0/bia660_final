@@ -18,6 +18,8 @@ dbname = 'biafinal_db'
 l_host = '127.0.0.1'
 l_port = 3306
 
+vega_width = 500
+vega_height = 300
 
 def line(cate):
     conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
@@ -52,7 +54,7 @@ def line(cate):
 
     #Note that we're using timeseries, so x-scale type is "time". For non
     #timeseries data, use "linear"
-    vis = Visualization(width=500, height=300)
+    vis = Visualization(width=vega_width, height=vega_height)
     vis.scales['x'] = Scale(name='x', type='time', range='width',
                             domain=DataRef(data='table', field="data.idx"))
     vis.scales['y'] = Scale(name='y', range='height', type='linear', nice=True,

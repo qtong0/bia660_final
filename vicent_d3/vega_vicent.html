@@ -8,11 +8,19 @@
     <script src="http://trifacta.github.io/vega/vega.js"></script>
   </head>
   <body>
-    <div id="vis1"></div>
-    <div id="vis2"></div>
-    <div id="vis3"></div>
-    <div id="vis4"></div>
-    <div id="vis5"></div>
+    <p>Recommend</p>
+    <article>
+        <div  style="display: inline-block" id="vis2"></div><div  style="display: inline-block"  id="vis3"></div>
+    </article>
+    <article>
+        <div style="display: inline-block" id="vis11"></div>
+        <div style="display: inline-block" id="vis12"></div>
+        <div style="display: inline-block" id="vis13"></div>
+    </article>
+    <article>
+        <div  style="display: inline-block" id="vis4"></div>
+        <div style="display: inline-block"  id="vis5"></div>
+    </article>
 
   </body>
 <script type="text/javascript">
@@ -20,7 +28,9 @@
     function parse(spec,divname) {
       vg.parse.spec(spec, function(chart) { chart({el:divname}).update(); });
     }
-    parse("./vega_bc.json","#vis1");
+    parse("./vega_bc_ratio.json","#vis11");
+    parse("./vega_bc_review.json","#vis12");
+    parse("./vega_bc_price.json","#vis13");
     parse("./vega_bc_pro.json","#vis2");
     parse("./vega_stack_bc.json","#vis3");
     parse("./vega_lc.json","#vis4");

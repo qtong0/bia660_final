@@ -7,6 +7,8 @@ dbname = 'biafinal_db'
 l_host = '127.0.0.1'
 l_port = 3306
 
+vega_width = 500
+vega_height = 300
 def stackChart(cate,getwhat):
     conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
     cur1 = conn.cursor()
@@ -48,8 +50,8 @@ def stackChart(cate,getwhat):
 
     stackchart = {}
     stackchart[ "name"]= "stack chart"
-    stackchart[ "width"]=  500
-    stackchart[ "height"]= 200
+    stackchart[ "width"]=  vega_width
+    stackchart[ "height"]= vega_height
     stackchart["padding"] =  {"top":10, "bottom":30, "left":30, "right":10}
     stackchart["data"] = []
     

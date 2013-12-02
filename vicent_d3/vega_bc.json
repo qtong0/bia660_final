@@ -1,0 +1,183 @@
+{
+  "axes": [
+    {
+      "scale": "x",
+      "title": "restaurant",
+      "type": "x"
+    },
+    {
+      "scale": "y",
+      "title": "price",
+      "type": "y"
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "col": "price",
+          "idx": "T1",
+          "val": 8.5
+        },
+        {
+          "col": "price",
+          "idx": "T2",
+          "val": 5.925
+        },
+        {
+          "col": "price",
+          "idx": "T3",
+          "val": 10.555556
+        },
+        {
+          "col": "price",
+          "idx": "T4",
+          "val": 11.25
+        },
+        {
+          "col": "price",
+          "idx": "T5",
+          "val": 14.71
+        },
+        {
+          "col": "price",
+          "idx": "T6",
+          "val": 2.75
+        },
+        {
+          "col": "price",
+          "idx": "T7",
+          "val": 19.564286
+        },
+        {
+          "col": "price",
+          "idx": "T8",
+          "val": 8.2
+        },
+        {
+          "col": "price",
+          "idx": "T9",
+          "val": 8.107143
+        },
+        {
+          "col": "price",
+          "idx": "T10",
+          "val": 22.0
+        },
+        {
+          "col": "price",
+          "idx": "T11",
+          "val": 8.0
+        },
+        {
+          "col": "price",
+          "idx": "T12",
+          "val": 16.0
+        },
+        {
+          "col": "price",
+          "idx": "T13",
+          "val": 8.333333
+        },
+        {
+          "col": "price",
+          "idx": "T14",
+          "val": 16.111111
+        },
+        {
+          "col": "price",
+          "idx": "T15",
+          "val": 17.347561
+        },
+        {
+          "col": "price",
+          "idx": "T16",
+          "val": 10.333333
+        },
+        {
+          "col": "price",
+          "idx": "T17",
+          "val": 18.0
+        },
+        {
+          "col": "price",
+          "idx": "T18",
+          "val": 21.5
+        },
+        {
+          "col": "price",
+          "idx": "T19",
+          "val": 13.99
+        },
+        {
+          "col": "price",
+          "idx": "T20",
+          "val": 32.0
+        },
+        {
+          "col": "price",
+          "idx": "T21",
+          "val": 15.0
+        }
+      ]
+    }
+  ],
+  "height": 300,
+  "legends": [],
+  "marks": [
+    {
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "enter": {
+          "width": {
+            "band": true,
+            "offset": -1,
+            "scale": "x"
+          },
+          "x": {
+            "field": "data.idx",
+            "scale": "x"
+          },
+          "y": {
+            "field": "data.val",
+            "scale": "y"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      },
+      "type": "rect"
+    }
+  ],
+  "scales": [
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.idx"
+      },
+      "name": "x",
+      "range": "width",
+      "type": "ordinal"
+    },
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.val"
+      },
+      "name": "y",
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "width": 500
+}

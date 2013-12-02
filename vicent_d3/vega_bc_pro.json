@@ -1,0 +1,123 @@
+{
+  "axes": [
+    {
+      "scale": "x",
+      "title": "restaurant",
+      "type": "x"
+    },
+    {
+      "scale": "y",
+      "title": "recommend",
+      "type": "y"
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {
+          "col": "recommend",
+          "idx": "T1",
+          "val": 31.65
+        },
+        {
+          "col": "recommend",
+          "idx": "T2",
+          "val": 69.25
+        },
+        {
+          "col": "recommend",
+          "idx": "T3",
+          "val": 27.55
+        },
+        {
+          "col": "recommend",
+          "idx": "T4",
+          "val": 42.1666664
+        },
+        {
+          "col": "recommend",
+          "idx": "T5",
+          "val": 8.733333600000002
+        },
+        {
+          "col": "recommend",
+          "idx": "T6",
+          "val": 46.85
+        },
+        {
+          "col": "recommend",
+          "idx": "T7",
+          "val": 8.1566664
+        },
+        {
+          "col": "recommend",
+          "idx": "T8",
+          "val": 147.028364
+        },
+        {
+          "col": "recommend",
+          "idx": "T9",
+          "val": 47.7166664
+        }
+      ]
+    }
+  ],
+  "height": 300,
+  "legends": [],
+  "marks": [
+    {
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "enter": {
+          "width": {
+            "band": true,
+            "offset": -1,
+            "scale": "x"
+          },
+          "x": {
+            "field": "data.idx",
+            "scale": "x"
+          },
+          "y": {
+            "field": "data.val",
+            "scale": "y"
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        }
+      },
+      "type": "rect"
+    }
+  ],
+  "scales": [
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.idx"
+      },
+      "name": "x",
+      "range": "width",
+      "type": "ordinal"
+    },
+    {
+      "domain": {
+        "data": "table",
+        "field": "data.val"
+      },
+      "name": "y",
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "width": 500
+}
