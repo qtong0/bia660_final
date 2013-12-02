@@ -127,7 +127,7 @@ def stackChart(cate,getwhat):
     ]
 
     print stackchart
-    with open('./vega_stack_bc.json', 'w') as outfile:
+    with open('./vega_stack_bc_{0}.json'.format(getwhat), 'w') as outfile:
         json.dump(stackchart, outfile)
 
     print names;
