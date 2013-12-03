@@ -10,6 +10,7 @@ Vincent Bar Chart Example
 from vincent import *
 import pandas as pd
 import pymysql
+import math
 
 dbuser = 'bia_user'
 dbpsw = 'biabiabia'
@@ -19,6 +20,12 @@ l_port = 3306
 
 vega_width = 500
 vega_height = 300
+
+def isneg(v):
+    if v<0:
+        return 0
+    else:
+        return v
 
 def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,w_yelp_review):
     conn = pymysql.connect(host=l_host, port=l_port, user=dbuser, passwd=dbpsw, db=dbname)
@@ -52,18 +59,37 @@ def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,
     #print(cur.description)
     #r = cur.fetchall()
 
+    maxprice = 0.0
+    sumprice = 0.0
+    price_list  = []
+    for p in cur_p:
+        price_list.append(float(p[2]))
+        sumprice += float(p[2])
+        if p[2]>maxprice:
+            maxprice = float(p[2])
+    avgprice = sumprice/len(price_list)
+
+    #calculate variance
+    price_variance = 0.0
+    for p in price_list:
+        price_variance += (p-avgprice)*(p-avgprice)
+    price_sd = math.sqrt(price_variance/len(price_list)) #standard deviation
+
+    #cur_p.execute(cmd_price)
+
     ratios = []
     titles = []
     names = []
     c = 1
-    for p,a,y in zip(cur_p,cur_a,cur_y):
+    for p,a,y in zip(price_list,cur_a,cur_y):
         names.append(a[0])
-        ratios.append({"recommend":(float(p[2])*w_price+\
+        ratios.append({"recommend":isneg((\
+                                    ((avgprice-p)/price_sd)*w_price+\
                                     float(a[1])*w_allmenu_ratio+\
                                     float(a[2])*w_allmenu_review+\
                                     float(y[1])*w_yelp_ratio+\
-                                    float(y[2])*w_yelp_review)})
-        titles.append("T{0}".format(c))
+                                    float(y[2])*w_yelp_review))})
+        titles.append("{0}".format(c))
         c += 1 
 
     print ratios ,titles
@@ -108,4 +134,4 @@ def ratioBar(cate,getwhat,w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,
 
 if __name__ == "__main__":
     #ratioBar("Burgers","recommend",w_price,w_allmenu_ratio,w_allmenu_review,w_yelp_ratio,w_yelp_review);
-    ratioBar("Burgers","recommend",0.8,0.9,0.5,0.9,1);
+    ratioBar("Burgers","recommend",10,0.9,0.5,0.9,1);

@@ -62,7 +62,7 @@ def ratioBar(cate,getwhat):
         else:
             names.append(r[0])
             ratios.append({"ratio":r[1],"review":r[2]})
-        titles.append("T{0}".format(c))
+        titles.append("{0}".format(c))
         c += 1 
 
     print ratios ,titles
